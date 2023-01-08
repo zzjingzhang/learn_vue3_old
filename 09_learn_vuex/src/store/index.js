@@ -1,15 +1,21 @@
 import { createStore } from 'vuex'
+import homeModule from './modules/home'
+import userModule from './modules/user'
 
 const store = createStore({
-  state: {
-  },
-  getters: {
+  state() {
+    return {
+      rootCounter: 0,
+    }
   },
   mutations: {
-  },
-  actions: {
+    increment(state) {
+      state.rootCounter++
+    }
   },
   modules: {
+    homeModule,
+    userModule
   }
 })
 export default store

@@ -1,20 +1,18 @@
 <template>
   <div>
-    <Home></Home>
-    <button @click="increment">app+1</button>
-    <button @click="decrement">app-1</button>
+    <h1>当前计数:{{ counter }}</h1>
+    <button @click="incrementN">home+n</button>
+    <button @click="increment">home+1</button>
+    <button @click="decrement">home-1</button>
   </div>
 </template>
 
 <script>
-import Home from './views/Home.vue'
-import { mapMutations } from 'vuex'
+import { mapState, mapMutations } from 'vuex'
 export default {
-  name: 'App',
-  components: {
-    Home,
+  computed: {
+    ...mapState(['counter']),
   },
-  computed: {},
   methods: {
     // 写法一
     // ...mapMutations(['increment', 'decrement'])
@@ -25,6 +23,14 @@ export default {
     // decrement() {
     //   this.$store.commit('decrement')
     // },
+    incrementN() {
+      this.$store.commit('incrementN', { n: 10 })
+      //   另外一种提交风格
+      //   this.$store.commit({
+      //     type: 'incrementN',
+      //     n: 10,
+      //   })
+    },
   },
   setup() {
     // 写法三
